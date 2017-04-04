@@ -1,0 +1,140 @@
+@import 'src/assets/css/_theme';
+
+@mixin animate {
+  transition: all 0.25s;
+  -webkit-transition: all .25s;
+  -moz-transition: all 0.25s;
+}
+
+#modal {
+  @include animate;
+}
+
+#modal.showOverflow {
+  overflow: visible;
+}
+
+#modal .modal-close i {
+  @include animate;
+  color: #fff;
+  background: #000;
+  font-size: 30px;
+  border-radius: 30px;
+  opacity: .3;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 5px;
+  z-index: 9999;
+
+  &:hover {
+    opacity: .5;
+  }
+}
+
+$panelHeight: 450px;
+
+.new-item-panel {
+  min-height: $panelHeight;
+
+  h2 {
+    margin-top: 0;
+    padding-top: 50px;
+    color: #fff;
+    font-weight: 200;
+    line-height: 4.3rem;
+    padding-right: 40px;
+  }
+
+  @media only screen and (min-width: 601px) {
+    .wrapper.valid { left: 29%; }
+    #preview { width: 36%; }
+  }
+
+  @media only screen and (min-width: 993px) {
+    .wrapper.valid { left: 14%; }
+    #preview { width: 28%; }
+  }
+
+  .wrapper {
+    @include animate;
+    position: relative;
+  }
+
+  .wrapper:not(.valid) {
+    left: 0;
+  }
+
+  #preview {
+    @include animate;
+    height: 100%;
+    background-color: $primary-color;
+    position: absolute;
+    left: -100%;
+
+    h2 {
+      padding: 0;
+      font-size: 1.2rem;
+      font-weight: 400;
+      line-height: 1.7rem;
+    }
+  }
+
+  #preview.active {
+    left: 0;
+  }
+
+  #preview .content {
+    padding: 20px;
+  }
+
+  //$height: 200px;
+  $height: 100%;
+  $iconSize: 55px;
+  $iconColor: rgba(255, 255, 255, 0.5);
+  $labelSize: 12px;
+
+  #preview .image-wrapper {
+    height: $height;
+    overflow: hidden;
+    background-color: rgba(0,0,0, .3);
+
+    .placeholder-image {
+      height: 100%;
+      text-align: center;
+    }
+
+    i {
+      cursor: default;
+      //margin-top: $height/2 - $iconSize/2 - $labelSize;
+      margin-top: $panelHeight/2 - $iconSize/2 - $labelSize - 10px;
+      font-size: $iconSize;
+      color: $iconColor;
+    }
+
+    label {
+      display: block;
+      text-align: center;
+      font-size: $labelSize;
+    }
+
+    .item-image {
+      height: $height;
+      opacity: 0;
+
+      &.animate {
+        opacity: 1;
+      }
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+input {
+  text-overflow: ellipsis;
+}

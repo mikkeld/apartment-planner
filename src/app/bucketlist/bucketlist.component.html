@@ -1,0 +1,58 @@
+<div class="content-wrapper">
+
+  <bucketlist-form></bucketlist-form>
+
+  <div class="table-header-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <nav class="table-tools z-depth-0">
+            <div class="nav-wrapper">
+              <ul class="right layout-changer">
+                <li *ngIf="showBulkTools" class="tool"><a (click)="deleteItem(selectedItemId)"><i class="material-icons right">delete</i></a></li>
+                <li *ngIf="showBulkTools" class="tool last"><a href="#"><i class="material-icons right">edit</i></a></li>
+                <li><a href="#"><i class="material-icons right">view_module</i>Grid</a></li>
+                <li><a href="#" class="active"><i class="material-icons right">view_list</i>List</a></li>
+              </ul>
+              <ul class="left">
+                <li class="selector">
+                <a *ngIf="hasFilter" (click)="removeFilter()" class="remove-filter"><i class="small material-icons">cancel</i></a>
+                <a dropdown data-beloworigin="true" class="dropdown-button filter" href="#" data-activates="rooms"><i class="material-icons right">expand_more</i>{{filteredRoomLabel}}</a>
+                  <ul id="rooms" class="dropdown-content">
+                    <li *ngFor="let room of rooms">
+                      <a (click)="setKeyValueFilter('room', room)">{{room}}</a>
+                    </li> 
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <table class="bordered highlight bucketlist">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th></th>
+                <th>Price</th>
+                <th>Room</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of bucketListFiltered; let i = index" (click)="selectItem(item)" [class.selected]="item.id === selectedItemId">
+                <td class="img">
+                  <a href="{{item.image}}" target="_blank">
+                    <img *ngIf="item.image" src="{{item.image}}" class="circle"></a>
+                </td>
+                <td><a href="{{item.link}}" target="_blank" class="title">{{item.name}}</a></td>
+                <td><strong>{{item.price}}</strong></td>
+                <td>{{item.room}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <ul id='tools' class='dropdown-content'>
+            <li id="backup-container"></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

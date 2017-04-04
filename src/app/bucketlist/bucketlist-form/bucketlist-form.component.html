@@ -1,0 +1,79 @@
+<a href="#modal" (click)="animatePanel = true; reset(); newitemForm.reset();" class="btn-floating btn-large waves-effect waves-light nav-add-new-button modal-trigger"><i class="material-icons">add</i></a>
+
+<div id="modal" class="modal cover primary-color-dark slideInDown" 
+  [class.animated]="animatePanel">
+  <a href="#" class="modal-action modal-close"><i class="material-icons">clear</i></a>
+  <div class="new-item-panel" [class.valid]="newitemForm.valid">
+    <div class="row">
+      <div id="preview" [class.active]="newitemForm.valid">
+        <div class="image-wrapper">
+          <div class="placeholder-image" droppable (dropped)="onDrop($event)">
+            <div *ngIf="!model.image">
+              <i class="material-icons ">camera_alt</i>
+              <label>Drop image here!</label>
+            </div>
+            <div class="item-image" [class.animate]="model.image">
+              <img src="{{model.image}}">
+            </div>
+          </div>
+        </div>
+        <div class="content" *ngIf="false">
+          <h2>{{model.name}}</h2>
+        </div>
+      </div>
+      <div class="wrapper container" [class.valid]="newitemForm.valid">
+        <div class="col l12" [class.m9]="newitemForm.valid">
+          <h2>{{model.name || "New item"}}</h2>
+          <form materialize #newitemForm="ngForm" (ngSubmit)="saveItem()">
+            <div class="input-field col l6 m12">
+              <input id="name" type="text"
+              name="name" [(ngModel)]="model.name" required>
+              <label for="name">Name</label>
+            </div>
+            <div class="input-field col l6 m12">
+              <input id="link" type="text"
+              name="link" [(ngModel)]="model.link">
+              <label for="link">Link</label>
+            </div>
+            <div class="input-field col l4 m12">
+              <input id="image" type="text"
+              name="image" [(ngModel)]="model.image">
+              <label for="image">Image</label>
+            </div>
+            <div class="input-field col l3 postfixed">
+              <input id="price" class="right-align" type="text" 
+              name="price" [(ngModel)]="model.price">
+              <label for="price">Price</label>
+            </div>
+            <div class="input-field col l1 postfix">
+              <select materialize="material_select" id="currency" class="bw currency" name="currency" [ngModel]="model.currency" (ngModelChange)="change('currency', $event)">
+                <option value="dkk" selected>DKK</option>
+                <option value="eur">€</option>
+                <option value="usd">$</option>
+              </select>
+            </div>
+            <div class="input-field col l4 m12">
+              <select id="room" class="small bw" name="room" [(ngModel)]="model.room">
+                <option value="" disabled selected>Suitable room</option>
+                <option value="kitchen">Kitchen</option>
+                <option value="living_room">Living room</option>
+                <option value="bathroom">Bathroom</option>
+                <option value="bedroom">Bedroom</option>
+                <option value="outside">Outside</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="input-field col m12">
+              <div class="chips chips-placeholder" materialize="material_chip" [materializeParams]="[chipsPlaceholder]" (chip.add)="tagAdded($event.detail)" (chip.delete)="tagDeleted($event.detail)"></div>
+            </div>
+            <div class="input-field col s12">
+              <button type="submit" [disabled]="!newitemForm.form.valid" class="waves-effect waves-light btn">Add</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

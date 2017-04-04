@@ -1,0 +1,161 @@
+/* You can add global styles to this file, and also import other style files */
+@import "assets/css/_theme";
+@import "assets/css/animate.css";
+
+body {
+  background: rgba(0,0,0,.025);
+}
+
+h1,h2,h3,h4,h5,h6,a,p,span,strong {
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  font-weight: 500;
+}
+
+p {
+  color: rgba(0, 0, 0, 0.71);
+}
+
+img {
+  max-width: 100%;
+}
+
+#brand-logo {
+  font-weight: bold;
+}
+
+#hero h1 {
+  font-size: 3.5rem;
+  font-weight: 200;
+  line-height: 200%;
+}
+
+#topnav {
+  opacity: .9;
+  background: linear-gradient(170deg, #004d40, #01579b);
+}
+
+.nav-wrapper-outer {
+  background-image: url('./assets/navbg2.jpg');
+  background-size: 100% auto;
+  background-position: 0 200%;
+}
+
+.nav-add-new-button {
+  position: absolute;
+  right: 14%;
+  top: 246px;
+}
+
+.tabs.tabs-transparent .indicator {
+  background-color: $accent-color;
+}
+
+@mixin customModal {
+  opacity: 1 !important;
+  max-height: none;
+  top: 25px !important;
+  &.top {
+    top: 0 !important;
+  }
+}
+
+.modal.cover-full {
+  @include customModal;
+  width: 100%;
+}
+
+.modal.cover {
+  @include customModal;
+  width: 60%;
+}
+
+.ng-valid[required], .ng-valid.required {
+  border-bottom-color: $success-color;
+  box-shadow: 0 1px 0 0 $success-color;
+}
+
+.ng-invalid:not(form)  {
+  border-bottom-color: $error-color;
+  box-shadow: 0 1px 0 0 $error-color;
+}
+
+.btn[disabled], .btn:disabled {
+  background-color: transparentize($accent-color, .5) !important;
+  color: rgba(255,255,255,.35) !important;
+}
+
+.small > .dropdown-content li {
+  min-height: 0;
+}
+
+.small > .dropdown-content li > a, .small > .dropdown-content li > span {
+  font-size: 14px;
+  padding: {
+    top: 10px;
+    bottom: 10px;
+  }
+}
+
+.bw .dropdown-content li:not(.disabled) > a, .bw > .dropdown-content li:not(.disabled) > span {
+  color: #444;
+}
+
+.primary-color-dark {
+  label, option, select, input {
+    font-weight: 300;
+  }
+}
+
+.chips.focus {
+  border-bottom-color: $accent-color;
+  box-shadow: 0 1px 0 0 $accent-color;
+}
+
+.select-wrapper input.select-dropdown {
+  padding-top: 1px;
+  height: 2.9rem;
+}
+
+.postfix {
+  padding-left: 0 !important;
+  .caret {
+    display: none !important;
+  }
+  .select-wrapper input.select-dropdown {
+    text-align: center;
+  }
+}
+
+.postfixed {
+  padding-right: 0 !important;
+}
+
+.currency {
+  input {
+    color: rgba(255,255,255,.5);
+  }
+  &:hover input {
+    color: $accent-color;
+  }
+}
+
+.right-align {
+  text-align: right;
+}
+
+#toast-container {
+  bottom: 4%;
+  right: 3%;
+  top: initial;
+}
+
+.chips .input, .chip {
+  color: rgba(255,255,255,0.85);
+}
+
+.chip {
+  background-color: $primary-color;
+}

@@ -1,0 +1,24 @@
+$primary-color-dark:   #303F9F !default;
+$primary-color:        #3F51B5 !default;
+$primary-color-light:  #C5CAE9 !default;
+$primary-color-text:   #FFFFFF !default;
+$accent-color:         #ff9800 !default;
+$secondary-color:      $accent-color !default;
+$primary-text-color:   #212121 !default;
+$secondary-text-color: #757575 !default;
+$divider-color:        #BDBDBD !default;
+
+$success-color: #4caf50 !default;
+$error-color: #f44336 !default;
+$link-color: #039be5 !default;
+
+.accent {
+  background-color: $accent-color;
+}
+
+.primary-color-dark {
+  background-color: $primary-color-dark;
+  h1,h2,h3,h4,h5,h6, p, span, strong, input, label, select, option, li {
+    color: rgba(255,255,255,.85);
+  }
+}
