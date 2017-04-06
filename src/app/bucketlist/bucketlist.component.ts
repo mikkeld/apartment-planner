@@ -20,12 +20,12 @@ export class BucketlistComponent {
   private filterFunction: (item: BucketlistItem) => boolean = BucketlistComponent.DEFAULT_FILTER;
 
   private selectedItemId: string = null;
-  private filteredRoomLabel: string = "Room";
-  private hasFilter: boolean = false;
-  private showBulkTools: boolean = false;
+  private filteredRoomLabel = 'Room';
+  private hasFilter = false;
+  private showBulkTools = false;
 
   constructor(private bucketlistService: BucketlistService) {
-    this.bucketlistService.getBucketlist().subscribe(bucketList => { 
+    this.bucketlistService.getBucketlist().subscribe(bucketList => {
       this.bucketList = this.bucketListFiltered = bucketList;
       this.appendBackupLink();
       this.updateRooms();
@@ -51,7 +51,7 @@ export class BucketlistComponent {
   private setKeyValueFilter(key, value) {
     this.filterFunction = (item: BucketlistItem) => {
       return item[key] === value;
-    }
+    };
     this.filteredRoomLabel = value;
     this.hasFilter = true;
     this.filter();
@@ -59,7 +59,7 @@ export class BucketlistComponent {
 
   private removeFilter() {
     this.filterFunction = BucketlistComponent.DEFAULT_FILTER;
-    this.filteredRoomLabel = "Room";
+    this.filteredRoomLabel = 'Room';
     this.hasFilter = false;
     this.filter();
   }
@@ -70,18 +70,19 @@ export class BucketlistComponent {
   }
 
   appendBackupLink() {
-    var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.bucketList));
-    var container = $('body').find('#backup-container');
+    const data = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(this.bucketList));
+    const container = $('body').find('#backup-container');
     $('<a id="backup-link" href="data:' + data + '" download="data.json">Backup</a>')
     .appendTo(container);
   }
 
   deleteItem(id: string) {
-    var item = this.bucketList.find(item => item.id === id);
+    let item = this.bucketList.find(item => item.id === id);
     this.bucketlistService.deleteBucketListItem(item).then(() => {
       this.bucketList = this.bucketList.filter(item => item.id !== id);
       this.filter();
       Materialize.toast('Item deleted', 4000);
     });
   }
+
 }

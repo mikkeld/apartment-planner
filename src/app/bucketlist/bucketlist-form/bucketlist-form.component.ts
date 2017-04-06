@@ -31,12 +31,13 @@ export class BucketlistFormComponent {
   }
 
   saveItem () {
+    console.log('save button clicked');
     this.bucketlistService.saveBucketlistItem(this.model)
       .then(res => {
         Materialize.toast('Item saved', 4000);
         this.closeForm();
       })
-      .catch(error => { 
+      .catch(error => {
         Materialize.toast('Error while saving', 4000);
       });
   }
@@ -68,7 +69,7 @@ export class BucketlistFormComponent {
     });
 
     // OMG H4X FØØØØJ
-    $('select#room').on('change', (e) => { 
+    $('select#room').on('change', (e) => {
       var val = $(e.target).val();
       this.change('room', val);
     });
