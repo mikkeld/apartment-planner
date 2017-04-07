@@ -1,0 +1,22 @@
+<div class="content-wrapper">
+  <div class="table-header-bg">
+    <div class="container">
+
+      <!-- Inspiration Header -->
+
+      <app-inspiration-header (onBudget)="inspirationService.setBudget($event)"
+                              [budget]="(budget | async)?.limit"
+                              [items]="items"></app-inspiration-header>
+
+      <md-slide-toggle
+        color="primary"
+        (change)="onChecked()"
+        [(ngModel)]="slideToggleModel">Bucketed items only</md-slide-toggle>
+
+      <app-inspiration-list (onToggle)="inspirationService.updateBucketStatus($event)"
+                            [items]="items | async"></app-inspiration-list>
+
+
+    </div>
+  </div>
+</div>

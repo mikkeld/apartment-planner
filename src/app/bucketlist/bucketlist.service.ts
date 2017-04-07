@@ -34,8 +34,9 @@ export class BucketlistService {
     return this.items.push(itemFirebase);
   }
 
-  deleteBucketListItem(item: BucketlistItem) {
-    return this.storage.delete('/api/bucketlist/' + item.id).toPromise();
+  deleteBucketListItem(key: string): firebase.Promise<any> {
+    return this.af.database.object(`/items/${key}`)
+      .remove();
   }
 
 }

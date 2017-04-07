@@ -9,35 +9,36 @@ declare var Materialize;
   templateUrl: './bucketlist-form.component.html',
   styleUrls: ['./bucketlist-form.component.scss']
 })
-export class BucketlistFormComponent {
+export class BucketlistFormComponent implements AfterViewInit {
 
-  private model = BucketlistItem.create();
-  private chipsPlaceholder = {
+  model = BucketlistItem.create();
+  chipsPlaceholder = {
     placeholder: '+Tag',
     secondaryPlaceholder: 'Tags',
   };
+  animatePanel: boolean;
 
-  constructor(private bucketlistService: BucketlistService) { }
-
-  private onDrop(data) {
+  constructor(private bucketlistService: BucketlistService) {
   }
 
-  private tagAdded(tagInfo) {
+  onDrop(data) {
+  }
+
+  tagAdded(tagInfo) {
     this.model.tags.push(tagInfo.tag);
   }
 
-  private tagDeleted(tagInfo) {
+  tagDeleted(tagInfo) {
     this.model.tags = this.model.tags.filter((t) => t !== tagInfo.tag);
   }
 
   saveItem () {
-    console.log('save button clicked');
     this.bucketlistService.saveBucketlistItem(this.model)
-      .then(res => {
+      .then(() => {
         Materialize.toast('Item saved', 4000);
         this.closeForm();
       })
-      .catch(error => {
+      .catch(() => {
         Materialize.toast('Error while saving', 4000);
       });
   }
@@ -52,7 +53,9 @@ export class BucketlistFormComponent {
   }
 
   change(prop, newValue) {
-    if (newValue === null) return;
+    if (newValue === null) {
+      return;
+    }
     this.model[prop] = newValue;
   }
 
@@ -70,7 +73,7 @@ export class BucketlistFormComponent {
 
     // OMG H4X FØØØØJ
     $('select#room').on('change', (e) => {
-      var val = $(e.target).val();
+      const val = $(e.target).val();
       this.change('room', val);
     });
     $('input.select-dropdown').focus(() => $('#modal').addClass('showOverflow'));

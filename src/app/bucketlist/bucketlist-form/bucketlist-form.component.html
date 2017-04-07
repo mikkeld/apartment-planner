@@ -1,6 +1,6 @@
 <a href="#modal" (click)="animatePanel = true; reset(); newitemForm.reset();" class="btn-floating btn-large waves-effect waves-light nav-add-new-button modal-trigger"><i class="material-icons">add</i></a>
 
-<div id="modal" class="modal cover primary-color-dark slideInDown" 
+<div id="modal" class="modal cover primary-color-dark slideInDown"
   [class.animated]="animatePanel">
   <a href="#" class="modal-action modal-close"><i class="material-icons">clear</i></a>
   <div class="new-item-panel" [class.valid]="newitemForm.valid">
@@ -28,7 +28,7 @@
             <div class="input-field col l6 m12">
               <input id="name" type="text"
               name="name" [(ngModel)]="model.name" required>
-              <label for="name">Name</label>
+              <label for="name" >Name</label>
             </div>
             <div class="input-field col l6 m12">
               <input id="link" type="text"
@@ -41,7 +41,7 @@
               <label for="image">Image</label>
             </div>
             <div class="input-field col l3 postfixed">
-              <input id="price" class="right-align" type="text" 
+              <input id="price" class="right-align" type="text"
               name="price" [(ngModel)]="model.price">
               <label for="price">Price</label>
             </div>

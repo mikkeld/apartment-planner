@@ -12,17 +12,18 @@ declare var $, Materialize;
 })
 export class BucketlistComponent {
 
-  private bucketList: BucketlistItem[];
-  private bucketListFiltered: BucketlistItem[];
-  private rooms: string[];
+  bucketList: BucketlistItem[];
+  bucketListFiltered: BucketlistItem[];
+  rooms: string[];
+
+  filterFunction: (item: BucketlistItem) => boolean = BucketlistComponent.DEFAULT_FILTER;
+
+  selectedItemId: string = null;
+  filteredRoomLabel = 'Room';
+  hasFilter = false;
+  showBulkTools = false;
 
   private static DEFAULT_FILTER = () => true;
-  private filterFunction: (item: BucketlistItem) => boolean = BucketlistComponent.DEFAULT_FILTER;
-
-  private selectedItemId: string = null;
-  private filteredRoomLabel = 'Room';
-  private hasFilter = false;
-  private showBulkTools = false;
 
   constructor(private bucketlistService: BucketlistService) {
     this.bucketlistService.getBucketlist().subscribe(bucketList => {
@@ -64,8 +65,10 @@ export class BucketlistComponent {
     this.filter();
   }
 
+
   selectItem(item: BucketlistItem) {
-    this.selectedItemId = (this.selectedItemId === item.id ? null : item.id);
+    console.log(item.$key);
+    this.selectedItemId = (this.selectedItemId === item.$key ? null : item.$key);
     this.showBulkTools = !!this.selectedItemId;
   }
 
@@ -77,12 +80,10 @@ export class BucketlistComponent {
   }
 
   deleteItem(id: string) {
-    let item = this.bucketList.find(item => item.id === id);
-    this.bucketlistService.deleteBucketListItem(item).then(() => {
-      this.bucketList = this.bucketList.filter(item => item.id !== id);
-      this.filter();
-      Materialize.toast('Item deleted', 4000);
-    });
+    this.bucketlistService.deleteBucketListItem(id)
+      .then(() => {
+        Materialize.toast('Item deleted', 4000);
+      });
   }
 
 }

@@ -13,13 +13,23 @@ import { BucketlistService } from './bucketlist/bucketlist.service';
 import { DroppableDirective } from './droppable.directive';
 
 import { FirebaseModule } from './firebase/setup';
+import { InspirationComponent } from './inspiration/inspiration.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MaterialModule} from '@angular/material';
+import {InspirationService} from './inspiration/shared/inspiration.service';
+import { ChartsModule } from 'ng2-charts';
+import { InspirationHeaderComponent } from './inspiration/inspiration-header/inspiration-header.component';
+import { InspirationListComponent } from './inspiration/inspiration-list/inspiration-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BucketlistComponent,
     BucketlistFormComponent,
-    DroppableDirective
+    DroppableDirective,
+    InspirationComponent,
+    InspirationHeaderComponent,
+    InspirationListComponent
   ],
   imports: [
     BrowserModule,
@@ -28,9 +38,12 @@ import { FirebaseModule } from './firebase/setup';
     MaterializeModule,
     Ng2Webstorage,
     FirebaseModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    ChartsModule
   ],
-  providers: [BucketlistService],
+  providers: [BucketlistService, InspirationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

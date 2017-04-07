@@ -1,0 +1,13 @@
+<md-list>
+  <h3 md-subheader>Items</h3>
+  <md-list-item *ngFor="let item of items">
+    <md-icon md-list-avatar>
+      <a href="{{item.image}}" target="_blank">
+        <img *ngIf="item.image" src="{{item.image}}" class="circle"></a>
+    </md-icon>
+    <h4 md-line>{{item.name}}</h4>
+    <p md-line> {{item.room}} </p>
+    <md-icon (click)="toggleItem(item)" [class.bucketed]="item.bucketed" class="pointer">check_circle</md-icon>
+  </md-list-item>
+
+</md-list>
