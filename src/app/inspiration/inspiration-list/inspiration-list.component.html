@@ -6,7 +6,8 @@
         <img *ngIf="item.image" src="{{item.image}}" class="circle"></a>
     </md-icon>
     <h4 md-line>{{item.name}}</h4>
-    <p md-line> {{item.room}} </p>
+    <p md-line> {{item.room}} <span>({{item.price | number}})</span> </p>
+
     <md-icon (click)="toggleItem(item)" [class.bucketed]="item.bucketed" class="pointer">check_circle</md-icon>
   </md-list-item>
 

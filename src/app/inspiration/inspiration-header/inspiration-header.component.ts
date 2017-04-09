@@ -12,9 +12,9 @@ export class InspirationHeaderComponent implements OnInit, Input {
   @Input() budget: string;
   @Input() items: FirebaseListObservable<BucketlistItem[]>;
   @Output() onBudget = new EventEmitter<string>();
-  public percentOfBudget: number;
   public totalCost: number;
   public editingBudget = false;
+  public percentOfBudget: number;
 
   public barChartOptions: any = {
     scaleShowVerticalLines: true,
@@ -54,11 +54,10 @@ export class InspirationHeaderComponent implements OnInit, Input {
 
   public updateBudget(budget: string): void {
     this.onBudget.emit(budget);
+    this.editingBudget = false;
   }
 
   public toggleEditingBudget(): void {
-    console.log("clicked")
-    console.log(this.editingBudget);
     this.editingBudget = !this.editingBudget;
   }
 
@@ -79,7 +78,6 @@ export class InspirationHeaderComponent implements OnInit, Input {
             }
           }
         }
-        this.setPercentageOfBudget(totalCost);
         this.totalCost =  totalCost;
         for (const room in aggregate) {
           this.barChartLabels.push(room);
@@ -89,8 +87,8 @@ export class InspirationHeaderComponent implements OnInit, Input {
       });
   }
 
-  private setPercentageOfBudget(totalCost: number) {
-    this.percentOfBudget = totalCost / Number(this.budget) * 100;
+  get percentOfB() {
+    return Math.round(this.totalCost / Number(this.budget) * 100);
   }
 
 }

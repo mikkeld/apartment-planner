@@ -16,13 +16,13 @@
   </div>
   <div *ngIf="(budget && !editingBudget)">
     <md-card-title-group>
-      <h1>{{totalCost}} <small class="percent_of_budget">({{ percentOfBudget }}% of budget)</small></h1>
+      <h1>{{totalCost | number }} <small class="percent_of_budget">({{ percentOfB }}% of budget)</small></h1>
       <button md-icon-button [mdMenuTriggerFor]="menu">
         <md-icon>more_vert</md-icon>
       </button>
       <md-menu #menu="mdMenu">
-        <button md-menu-item>
-          <a (click)="console.log(1)">
+        <button md-menu-item (click)="toggleEditingBudget()">
+          <a>
             <md-icon>edit</md-icon>
             <span>Edit budget</span>
           </a>
